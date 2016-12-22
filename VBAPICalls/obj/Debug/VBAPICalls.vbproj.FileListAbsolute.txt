@@ -1,0 +1,9 @@
+c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\VBAPICalls\bin\Debug\VBAPICalls.dll
+c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\VBAPICalls\bin\Debug\VBAPICalls.pdb
+c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\VBAPICalls\bin\Debug\VBAPICalls.xml
+c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\VBAPICalls\obj\Debug\VBAPICalls.vbprojResolveAssemblyReference.cache
+c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\VBAPICalls\obj\Debug\VBAPICalls.Resources.resources
+c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\VBAPICalls\obj\Debug\VBAPICalls.vbproj.GenerateResource.Cache
+c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\VBAPICalls\obj\Debug\VBAPICalls.dll
+c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\VBAPICalls\obj\Debug\VBAPICalls.xml
+c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\VBAPICalls\obj\Debug\VBAPICalls.pdb
