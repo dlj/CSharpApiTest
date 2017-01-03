@@ -1,5 +1,0 @@
-c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\CSharpAPICalls\bin\Debug\CSharpAPICalls.dll
-c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\CSharpAPICalls\bin\Debug\CSharpAPICalls.pdb
-c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\CSharpAPICalls\obj\Debug\CSharpAPICalls.csprojResolveAssemblyReference.cache
-c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\CSharpAPICalls\obj\Debug\CSharpAPICalls.dll
-c:\users\dlj\documents\visual studio 2015\Projects\REST API Test\CSharpAPICalls\obj\Debug\CSharpAPICalls.pdb
