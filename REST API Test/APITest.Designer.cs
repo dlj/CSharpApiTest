@@ -187,7 +187,7 @@
             this.getCurrentUserButton.UseVisualStyleBackColor = true;
             this.getCurrentUserButton.Click += new System.EventHandler(this.getCurrentUserButton_Click);
             // 
-            // Form1
+            // APITest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -197,7 +197,7 @@
             this.Controls.Add(this.getEmployeesButton);
             this.Controls.Add(this.connectButton);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Form1";
+            this.Name = "APITest";
             this.Text = "API Test";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

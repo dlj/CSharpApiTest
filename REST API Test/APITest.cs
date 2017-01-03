@@ -12,22 +12,26 @@ namespace REST_API_Test
 {
     public partial class APITest : Form
     {
-        public CSharpAPICalls.Logic sharp;
+        // This could be made more clear, by making interfaces for the Logic. But for the sake of simplicity, keep it this way.
+        //public CSharpAPICalls.Logic ApiLogic;
+        public VBAPICalls.Logic ApiLogic;        
+
         public APITest()
         {
             InitializeComponent();
-            sharp = new CSharpAPICalls.Logic();
+            //ApiLogic = new CSharpAPICalls.Logic();
+            ApiLogic = new VBAPICalls.Logic();
         }
 
         private async void connectButton_Click(object sender, EventArgs e)
         {
-            sharp.ServerUrl = this.serverTextBox.Text;
-            sharp.User = this.userTextBox.Text;
-            sharp.Password = this.userpasswordTextBox.Text;
+            ApiLogic.ServerUrl = this.serverTextBox.Text;
+            ApiLogic.User = this.userTextBox.Text;
+            ApiLogic.Password = this.userpasswordTextBox.Text;
 
             try
             {
-                var result = await sharp.TryLogin();
+                var result = await ApiLogic.TryLogin();
                 // Only success is handles as a return. Invalid is an exception
                 if (result)
                 {
@@ -47,7 +51,7 @@ namespace REST_API_Test
         {
             try
             {
-                var result = await sharp.JobsRequest();
+                var result = await ApiLogic.JobsRequest();
                 
                 if (!string.IsNullOrEmpty(result)) {
 
@@ -68,7 +72,7 @@ namespace REST_API_Test
         {
             try
             {
-                var result = await sharp.CurrentUserRequest();
+                var result = await ApiLogic.CurrentUserRequest();
 
                 if (!string.IsNullOrEmpty(result))
                 {
@@ -85,7 +89,7 @@ namespace REST_API_Test
         {
             try
             {
-                var result = await sharp.EmployeeRequest();
+                var result = await ApiLogic.EmployeeRequest();
 
                 if (!string.IsNullOrEmpty(result))
                 {
