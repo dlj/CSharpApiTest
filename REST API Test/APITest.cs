@@ -14,8 +14,8 @@ namespace REST_API_Test
     {
         // This could be made more clear, by making interfaces for the Logic. But for the sake of simplicity, keep it this way.
         //public CSharpAPICalls.Logic ApiLogic;
-        public VBAPICalls.Logic ApiLogic;        
-
+        private VBAPICalls.Logic ApiLogic;        
+        private object currentResource = null;
         public APITest()
         {
             InitializeComponent();
@@ -51,7 +51,7 @@ namespace REST_API_Test
         {
             try
             {
-                var result = await ApiLogic.JobsRequest();
+                var result = await ApiLogic.Jobs();
                 
                 if (!string.IsNullOrEmpty(result)) {
 
@@ -70,26 +70,44 @@ namespace REST_API_Test
 
         private async void getCurrentUserButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var result = await ApiLogic.CurrentUserRequest();
+            var result = await ApiLogic.CurrentUser();
 
-                if (!string.IsNullOrEmpty(result))
-                {
-                    this.outputTextBox.Text = result;
-                }
-            }
-            catch (Exception exp)
+            if (result != null)
             {
-                this.outputTextBox.Text = exp.Message;
+                this.currentNameTextBox.Text = result.Name;
+                this.currentPhoneTextBox.Text = result.Phone1;
+                this.currentInitialsTextBox.Text = result.Initials;
+                this.saveCurrentUserButton.Enabled = true;
+                this.currentResource = result;
             }
+            else
+                this.outputTextBox.Text = "Error : Current user not found";
+        }
+
+        private async void saveCurrentUserButton_Click(object sender, EventArgs e)
+        {
+            // Casting like this is not nice. But to keep the examples C# and VB, no shared classes
+            // For VB
+            ((VBAPICalls.Logic.Resource)currentResource).Initials = this.currentInitialsTextBox.Text;
+            ((VBAPICalls.Logic.Resource)currentResource).Phone1 = this.currentPhoneTextBox.Text;
+            ((VBAPICalls.Logic.Resource)currentResource).Name = this.currentNameTextBox.Text;
+            var result = await ApiLogic.SaveUser((VBAPICalls.Logic.Resource)currentResource);
+            /*
+            // For C#
+            ((CSharpAPICalls.Logic.Resource)currentResource).Initials = this.currentInitialsTextBox.Text;
+            ((CSharpAPICalls.Logic.Resource)currentResource).Phone = this.currentPhoneTextBox.Text;
+            ((CSharpAPICalls.Logic.Resource)currentResource).Name = this.currentNameTextBox.Text;
+            var result = await ApiLogic.SaveUserRequest((CSharpAPICalls.Logic.Resource)currentResource);
+            */
+
+
         }
 
         private async void getEmployeesButton_Click(object sender, EventArgs e)
         {
             try
             {
-                var result = await ApiLogic.EmployeeRequest();
+                var result = await ApiLogic.Employee();
 
                 if (!string.IsNullOrEmpty(result))
                 {
@@ -106,5 +124,7 @@ namespace REST_API_Test
                 this.outputTextBox.Text = exp.Message;
             }
         }
+
+
     }
 }
