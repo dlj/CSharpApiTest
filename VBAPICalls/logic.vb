@@ -82,8 +82,8 @@ Public Class Logic
             Throw New ArgumentNullException("serverUrl")
         End If
 
-        Dim helloReturn = Await Hello()
-        Await Login(helloReturn)
+        ''Dim helloReturn = Await Hello()
+        Await Login()
         Return True
     End Function
 
@@ -128,16 +128,10 @@ Public Class Logic
         End Property
     End Class
 
-    Private Async Function Login(helloValue As Integer) As Task(Of Boolean)
-
-        Using sha256 = New SHA256Managed()
-            Dim encoding As Text.Encoding = System.Text.Encoding.UTF8
-            Dim passhash As String = ToHex(sha256.ComputeHash(encoding.GetBytes(ToHex(sha256.ComputeHash(encoding.GetBytes(Password))) + helloValue.ToString())))
-
-            Using httpResult = Await createHttpClient("/api/auth/handshake", Verb.POST, New LoginRequest With {.UserName = User, .Password = passhash})
-                loggedIn = True
-                Return True
-            End Using
+    Private Async Function Login() As Task(Of Boolean)
+        Using httpResult = Await createHttpClient("/api/auth/handshake", Verb.POST, New LoginRequest With {.UserName = User, .Password = Password})
+            loggedIn = True
+            Return True
         End Using
     End Function
 

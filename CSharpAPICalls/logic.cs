@@ -63,35 +63,20 @@ namespace CSharpAPICalls
             if (string.IsNullOrEmpty(this.ServerUrl))
                 throw new ArgumentNullException("serverUrl");
 
-            var helloReturn = await HelloRequest();
-            await LoginRequest(helloReturn);
+            await LoginRequest();
             return true;
         }
 
-        private async Task<int> HelloRequest()
+        private async Task<bool> LoginRequest()
         {
-            using (var httpResult = await createHttpClient("/api/auth/hello",Verb.POST, new KeyValuePair<string, string>[1] { new KeyValuePair<string, string>("UserName", this.user) }))
+            using (var httpResult = await createHttpClient("/api/auth/handshake", Verb.POST, new KeyValuePair<string, string>[2] { new KeyValuePair<string, string>("UserName", this.user), new KeyValuePair<string, string>("Password", Password)  }))
             {
-                int result = 0;
-                int.TryParse(httpResult.ReadAsStringAsync().Result, out result);
-                return result;
-            }                
-        }
-
-        private async Task<bool> LoginRequest(int helloValue)
-        {            
-            using (var sha256 = new SHA256Managed())
-            {
-                var encoding = System.Text.Encoding.UTF8;
-                var passhash = ToHex(sha256.ComputeHash(encoding.GetBytes(ToHex(sha256.ComputeHash(encoding.GetBytes(Password))) + helloValue)));
-
-                using (var httpResult = await createHttpClient("/api/auth/handshake", Verb.POST, new KeyValuePair<string, string>[2] { new KeyValuePair<string, string>("UserName", this.user), new KeyValuePair<string, string>("Password", passhash) }))
-                {
-                    loggedIn = true;
-                    return true;
-                }
+                loggedIn = true;
+                return true;
             }
+
         }
+
         /// <summary>
         /// JobsRequest from the API. Only include active jobs.
         /// </summary>
